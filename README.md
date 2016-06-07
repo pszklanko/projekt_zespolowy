@@ -1,3 +1,0 @@
-# fitness-tests
-
-abc
