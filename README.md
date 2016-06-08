@@ -23,3 +23,5 @@ bower install
 cd ~/web2py
 ./web2py.py
 ```
+
+test test test
