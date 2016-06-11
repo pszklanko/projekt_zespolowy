@@ -58,4 +58,18 @@ def call():
     """
     return service()
 
+def main():
+    # This method is necessary to allow views/default/main.html to be rendered
+    return dict()
 
+def diets():
+    # This method is necessary to allow views/default/diets.html to be rendered
+    return dict()
+
+def products():
+    # This method is necessary to allow views/default/products.html to be rendered
+    return dict()
+
+def trainings():
+    # This method is necessary to allow views/default/trainings.html to be rendered
+    return dict()
