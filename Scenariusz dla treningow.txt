@@ -1,0 +1,40 @@
+Scenariusz dla treningów:
+
+Opcje:
+
+- Utwórz trening
+- Zarejestruj wykonany trening
+- Pokaż historie trenigów
+
+-> myśle że na razie można odpuścić edycje treningu/ usuwanie treningu zacznijmy od głownych funkcjonalności
+
+Ad1.
+Utwórz trening:
+
+1. Klik utworz trening button
+2. Użytkownik wybiera jakąś ze zdefiniowanych diet
+(jesli nie posiada przekierowujemy go aby utworzyl diete!)
+// hm w naszej bazie na razie jest tak że użytkownik nie może utworzyc
+// treningu bez diety
+3. Po wybraniu diety pokazuje sie multiselect z cwiczeniami ( jego wartosci zaciagamy z bazy )
+4. Wybiera cwiczenie i klika dodaj do treningu
+5. Po dodaniu wszystkich cwiczen kilka zapisz trening i insert do bazy
+
+Jakoś tak..
+
+Ad2.
+
+1. Użytkownik klika zarejestruj wykonany trening.
+2. Z bazy pobierany jest zestaw cwiczen na dany dzien w postaci listy
+liczba_porzadkowa | nazwa_cwiczenia | checkbox | il serii | il_powtorzen | obciazenie
+( po kliknieciu checbkoxa ze wykonano odblokowuja sie pola za nim, //TODO js )
+3. Następnie kilkamy zapisz wykonany trening i wszystko trafia nam do bazy
+
+Służy to do kontrolowania swoich postepow w treningu itd ( dla Piotrkowskiego to przejdzie? )
+
+Ad3.
+
+1. Pokaż historie treningów
+2. Wyświetlamy liste z w/w punktu w podanym zakresie dat ( jakis filtr tabeli )
+
+Akutalnie jest tak ze gdy w bazie tworzy sie rekord to tworzy sie z datą aktualnego zarejestrowania treningu, aczkolwiek mozemy wproawdzic ze uzytkownik podaje date wykonanego treningu ( np. uzytkownik zrobil trening ale nie mial czasu w aplikacji go zarejestrowac i chce zrobic to kilka dni pozniej )
