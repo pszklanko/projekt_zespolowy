@@ -5,12 +5,13 @@
 </style>
 
 <div class="btn-group btn-group-sm">
-  <button class="btn btn-block btn-default" ng-click="diets=false">Przeglądaj</button>
+  <button class="btn btn-block btn-default" ng-click="diets=false; get('diety', '')">Przeglądaj</button>
   <button class="btn btn-block btn-default" ng-click="diets=true">Dodaj</button>
 </div>
 
 <div ng-hide="diets">
-  Przeglądaj
+
+  {{diety}}
 </div>
 
 <div ng-show="diets">

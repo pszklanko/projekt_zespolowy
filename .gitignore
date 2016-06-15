@@ -1,2 +1,4 @@
 static/js/bower_components/
 databases/
+errors/
+sessions/

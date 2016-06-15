@@ -1,1 +1,49 @@
-Produkty
+<style>
+  .ng-invalid {background-color: lightpink;}
+  .ng-valid {background-color: : lightgreen;}
+  span.error {color: red; font-weight: bold}
+</style>
+
+<div>
+  <p>uzupełnij wymagane pola, aby dodać własny produkt</p>
+  <form name="productForm" novalidate>
+    <div class="well">
+
+      <h3>Pole 1</h3>
+      <div class="form-group">
+        <label>nazwa produktu</label>
+        <input name="pole" class="form-control" ng-model="produkt.nazwa" required />
+        <span class="error" ng-show="!produkt.nazwa">
+          Uzupełnij pole
+        </span>
+        <br>
+        <label>węglowodany [g]</label>
+        <input name="pole" class="form-control" ng-model="produkt.weglowodany" required />
+        <span class="error" ng-show="!produkt.weglowodany">
+          Uzupełnij pole
+        </span>
+        <br>
+        <label>białko [g]</label>
+        <input name="pole" class="form-control" ng-model="produkt.bialka" required />
+        <span class="error" ng-show="!produkt.bialka">
+          Uzupełnij pole
+        </span>
+        <br>
+        <label>tłuszcze [g]</label>
+        <input name="pole" class="form-control" ng-model="produkt.tluszcze" required />
+        <span class="error" ng-show="!produkt.tluszcze">
+          Uzupełnij pole
+        </span>
+        <br>
+        <label>kalorie [kcal]</label>
+        <input name="pole" class="form-control" ng-model="produkt.ilosc_kalorii" required />
+        <span class="error" ng-show="!produkt.ilosc_kalorii">
+          Uzupełnij pole
+        </span>
+      </div>
+    </div>
+  </form>
+  <button ng-click='add("produkty", produkt)' ng-show='productForm.$valid'>
+    Dodaj
+  </button>
+</div>

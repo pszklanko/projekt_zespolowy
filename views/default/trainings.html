@@ -1,1 +1,62 @@
-Treningi
+<style>
+  .ng-invalid {background-color: lightpink;}
+  .ng-valid {background-color: : lightgreen;}
+  span.error {color: red; font-weight: bold}
+</style>
+
+<div class="btn-group btn-group-sm">
+  <button class="btn btn-block btn-default">Utwórz trening</button>
+  <button class="btn btn-block btn-default" ng-click="get('historia_treningow', '')">Historia treningów</button>
+  <button class="btn btn-block btn-default">Dodaj wykonany</button>
+</div>
+
+<div>
+  HISTORIA
+
+  {{trainingHistory}}
+  <br>
+</div>
+
+<div>
+  <p>uzupełnij wymagane pola, aby dodać ?WYKONANY? trening</p>
+  <form name="productForm" novalidate>
+    <div class="well">
+
+      <h3>Pole 1</h3>
+      <div class="form-group">
+        <label>cwiczenie</label>
+        <input name="pole" class="form-control" ng-model="treningi.nazwa" required />
+        <span class="error" ng-show="!treningi.tluszcze">
+          Uzupełnij pole
+        </span>
+        <br>
+        <label>ilosc serii</label>
+        <input name="pole" class="form-control" ng-model="treningi.ilosc_serii" required />
+        <span class="error" ng-show="!treningi.nazwa">
+          Uzupełnij pole
+        </span>
+        <br>
+        <label>ilosc powtorzen</label>
+        <input name="pole" class="form-control" ng-model="treningi.ilosc_powtorzen" required />
+        <span class="error" ng-show="!treningi.weglowodany">
+          Uzupełnij pole
+        </span>
+        <br>
+        <label>obciazenie</label>
+        <input name="pole" class="form-control" ng-model="treningi.obciazenie" required />
+        <span class="error" ng-show="!treningi.bialka">
+          Uzupełnij pole
+        </span>
+      </div>
+    </div>
+  </form>
+  <button ng-click='add("produkty", produkt)' ng-show='productForm.$valid'>
+    Dodaj
+  </button>
+</div>
+
+<div>
+  DODAJ
+
+  JAKIE POLA TUTAJ POWINNY BYC?
+</div>
