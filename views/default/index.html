@@ -1,0 +1,35 @@
+<!D0CTYPE HTML>
+<html ng-app="personalTrainer">
+  <head>
+    <title>Trener Personalny</title>
+    <script src="{!=URL('static','js/bower_components/angular/angular.js')!}"></script>
+    <script src="{!=URL('static','js/bower_components/angular-route/angular-route.js')!}"></script>
+    <script src="{!=URL('static','js/ngTrainer/personalTrainer.js')!}"></script>
+    <script src="{!=URL('static','js/ngTrainer/trainerCtrl.js')!}"></script>
+    <script src="{!=URL('static','js/ngTrainer/config.js')!}"></script>
+
+    <link rel="stylesheet"
+          type="text/css"
+          href="{!=URL('static','js/bower_components/bootstrap/dist/css/bootstrap.css')!}">
+    <link rel="stylesheet"
+          type="text/css"
+          href="{!=URL('static','js/bower_components/bootstrap/dist/css/bootstrap-theme.css')!}">
+  </head>
+
+  <body ng-controller="trainerCtrl">
+    <div class="navbar navbar-inverse">
+      <a class="navbar-brand" href="#/main">TRENER PERSONALNY</a>
+    </div>
+    <div class="panel panel-default row">
+      <div class="col-xs-3">
+        <a class="btn btn-block btn-default btn-lg" href="#/main">Strona główna</a>
+        <a class="btn btn-block btn-default btn-lg" href="#/diets">Diety</a>
+        <a class="btn btn-block btn-default btn-lg" href="#/trainings">Treningi</a>
+        <a class="btn btn-block btn-default btn-lg" href="#/products">Produkty</a>
+      </div>
+      <div class="col-xs-8">
+        <ng-view />
+      </div>
+    </div>
+  </body>
+</html>

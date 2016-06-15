@@ -1,0 +1,43 @@
+Scenariusz dla diet:
+
+Diety dwie opcje:
+- pokaz diety
+- utworz diete ( edycji/usuwania nie ma w specyfikacji 
+do lesia jak sie wyrobimy to mozna dodac )
+
+Ad1. 
+
+1. Klik pokaz diety
+2. Wyświetlamy listy diet
+3. Dodaj produkty.
+
+Ad2.
+
+1. Klik utworz diete ( dostepny tez przy wyświetlaniu listy diet )
+2. Multiselect z rodzjami diet z bazy
+3. Uzytkownik wybiera rodzaj diety
+4. Po wybraniu diety mozliwość dodawania do niej produktów
+5. Po dodaniu produktów zapisujemy diete
+
+( dajemy użtykownikom możliwość zapisu tylko danych diet np. weglowodanowa, bialkowa itd. to ustalimy)
+
+Nie bedzie tutaj możliwości wyboru diety ( mysle ze damy to przy treningu )
+
+Ad3.
+
+Pewnie dodamy jakies domyslne produkty zeby nie bylo pusto
+stworzyc akcje WyswietlListeProduktow czy cos
+
+1.Pokzujemy liste produktow z paginatorem (np. 10 produktow na strone)
+2.Jakas wyszukiwarka po nazwie produktu, nazwie producenta? itd rozsadne pola
+3.Przycisk dodaj produkt
+ 3a. Formularz (w okienku? oodzielna podstorna, pod listą mi obojetne)
+ 3b. Pola formularza
+ 	-nazwa
+ 	-waga
+ 	-ilosc kalori w danej wadze przyklad:
+ 	Maslo
+ 	100g (nazwy 1 lyzeczka itp dopuszczalne)
+ 	500kal
+ 3c zapisz produkt, odswiezam liste/cala podstrone
+ 
