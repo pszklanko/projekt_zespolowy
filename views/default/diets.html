@@ -1,5 +1,32 @@
+<style>
+  .ng-invalid {background-color: lightpink;}
+  .ng-valid {background-color: : lightgreen;}
+  span.error {color: red; font-weight: bold}
+</style>
+
 <div class="btn-group btn-group-sm">
-  <button class="btn btn-block btn-default">Dodaj</button>
-  <button class="btn btn-block btn-default">Przeglądaj</button>
-  <button class="btn btn-block btn-default">Wybierz</button>
+  <button class="btn btn-block btn-default" ng-click="diets=false">Przeglądaj</button>
+  <button class="btn btn-block btn-default" ng-click="diets=true">Dodaj</button>
+</div>
+
+<div ng-hide="diets">
+  Przeglądaj
+</div>
+
+<div ng-show="diets">
+  <p>uzupełnij wymagane pola, aby stworzyć swoją dietę</p>
+  <form name="dietForm" novalidate>
+    <div class="well">
+
+      <h3>Pole 1</h3>
+      <div class="form-group">
+        <label>pole 1.1</label>
+        <input name="pole" class="form-control" ng-model="dupa" required />
+        <span class="error" ng-show="true">
+          Uzupełnij pole
+        </span>
+      </div>
+
+    </div>
+  </form>
 </div>
