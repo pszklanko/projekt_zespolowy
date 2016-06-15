@@ -8,6 +8,7 @@
 # - download is for downloading files uploaded in the db (does streaming)
 # -------------------------------------------------------------------------
 
+import gluon.contrib.simplejson as json
 
 def index():
     """
@@ -73,3 +74,8 @@ def products():
 def trainings():
     # This method is necessary to allow views/default/trainings.html to be rendered
     return dict()
+
+def getTestName():
+    #a = ['kamil','marcin','piotrek']
+    a = db.executesql('SELECT * from miasta;')
+    return json.dumps(a)
