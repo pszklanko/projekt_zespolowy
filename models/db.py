@@ -30,8 +30,8 @@ if not request.env.web2py_runtime_gae:
     # ---------------------------------------------------------------------
     # if NOT running on Google App Engine use SQLite or other DB
     # ---------------------------------------------------------------------
-    db = DAL('mysql://root:root@localhost/trener_personalny',
-                migrate=True)
+    db = DAL('mysql://root:tartan12@localhost/trener_personalny',
+                migrate=False, fake_migrate=True)
 else:
     # ---------------------------------------------------------------------
     # connect to Google BigTable (optional 'google:datastore://namespace')
@@ -110,25 +110,4 @@ auth.settings.registration_requires_verification = False
 auth.settings.registration_requires_approval = False
 auth.settings.reset_password_requires_verification = True
 
-# -------------------------------------------------------------------------
-# Define your tables below (or better in another model file) for example
-#
-# >>> db.define_table('mytable', Field('myfield', 'string'))
-#
-# Fields can be 'string','text','password','integer','double','boolean'
-#       'date','time','datetime','blob','upload', 'reference TABLENAME'
-# There is an implicit 'id integer autoincrement' field
-# Consult manual for more options, validators, etc.
-#
-# More API examples for controllers:
-#
-# >>> db.mytable.insert(myfield='value')
-# >>> rows = db(db.mytable.myfield == 'value').select(db.mytable.ALL)
-# >>> for row in rows: print row.id, row.myfield
-# -------------------------------------------------------------------------
 
-
-# -------------------------------------------------------------------------
-# after defining tables, uncomment below to enable auditing
-# -------------------------------------------------------------------------
-# auth.enable_record_versioning(db)
