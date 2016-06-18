@@ -4,7 +4,20 @@
   span.error {color: red; font-weight: bold}
 </style>
 
-<div>
+<nav class="navbar">
+  <div class="btn-group btn-group-sm">
+    <button type="button" class="btn btn-default navbar-btn" ng-click="products=false">Przeglądaj</button>
+    <button type="button" class="btn btn-default navbar-btn" ng-click="products=true">Dodaj</button>
+  </div>
+</nav>
+
+<div ng-hide="products">
+  Przeglądaj dostępne produkty
+
+  {{produkty}}
+</div>
+
+<div ng-show="products">
   <p>uzupełnij wymagane pola, aby dodać własny produkt</p>
   <form name="productForm" novalidate>
     <div class="well">

@@ -30,7 +30,7 @@ if not request.env.web2py_runtime_gae:
     # ---------------------------------------------------------------------
     # if NOT running on Google App Engine use SQLite or other DB
     # ---------------------------------------------------------------------
-    db = DAL('mysql://root:tartan12@localhost/trener_personalny',
+    db = DAL('mysql://root:root@localhost/trener_personalny',
                 migrate=False, fake_migrate=True)
 else:
     # ---------------------------------------------------------------------
@@ -109,5 +109,3 @@ mail.settings.ssl = myconf.get('smtp.ssl') or False
 auth.settings.registration_requires_verification = False
 auth.settings.registration_requires_approval = False
 auth.settings.reset_password_requires_verification = True
-
-

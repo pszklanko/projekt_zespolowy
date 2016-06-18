@@ -75,33 +75,23 @@ def trainings():
     # This method is necessary to allow views/default/trainings.html to be rendered
     return dict()
 
-def getTestName():
-    #a = ['kamil','marcin','piotrek']
-    a = db.executesql('SELECT * from miasta;')
-    return json.dumps(a)
-
 # funkcja zwracajaca rekordy wedlug kryteriow wyszukiwania
 # jesli brak kryteriow zwraca wszystkie dostepne
 def getRecord():
     data = json.loads(request.body.read())
+    selected = []
     if data['table'] == 'diety':
-        pass
-    elif cond:
-        pass
-    return 0
+        for i in db().select(db[data['table']].ALL):
+            selected.append({
+                "id": i.id
+                # ... tutaj powinny być wszystkie pola z tabeli
+                # analogicznie dla pozostałych tabel do których będą robione gety
+            })
+    return json.dumps(selected)
 
 # uniwersalne dodawanie rekordu do bazy
-# TODO teoretycznie to jest ok (w innych projektach dziala), obstawiam,
-# TODO że trzeba zdefiniować tabele w web2py (web2py/scripts/extract_mysql_models.py)
-# TODO problem nie wystepuje przy kazdej tabeli - moze to cos z zaleznosciami miedzy nimi
-# TODO web2py czegos nie ogarnia, albo cos jest zle zdefiniowane
 def addRecord():
     data = json.loads(request.body.read())
-    print data
     table = data['table']
     resp = db[table].insert(**data['attr'])
-    return resp
-
-def addSimplyProduct():
-    db.produkty.insert(nazwa = 'kielba', weglowodany = 10.0, bialka = 10.0, tluszcze = 10.0, ilosc_kalorii =100.0, id_producenta = 1 )
-    return 1
+    return json.dumps(resp)

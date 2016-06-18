@@ -4,20 +4,22 @@
   span.error {color: red; font-weight: bold}
 </style>
 
-<div class="btn-group btn-group-sm">
-  <button class="btn btn-block btn-default">Utwórz trening</button>
-  <button class="btn btn-block btn-default" ng-click="get('historia_treningow', '')">Historia treningów</button>
-  <button class="btn btn-block btn-default">Dodaj wykonany</button>
-</div>
+<nav class="navbar">
+  <div class="btn-group btn-group-sm">
+    <button type="button" class="btn btn-default navbar-btn" ng-click="get('historia_treningow', ''); trainings('history')">Historia treningów</button>
+    <button type="button" class="btn btn-default navbar-btn" ng-click="trainings('add')">Dodaj wykonany</button>
+    <button type="button" class="btn btn-default navbar-btn" ng-click="trainings('new')">Utwórz trening</button>
+  </div>
+</nav>
 
-<div>
+<div ng-show="trainingTab=='history'">
   HISTORIA
 
   {{trainingHistory}}
   <br>
 </div>
 
-<div>
+<div ng-show="trainingTab=='add'">
   <p>uzupełnij wymagane pola, aby dodać ?WYKONANY? trening</p>
   <form name="productForm" novalidate>
     <div class="well">
@@ -55,7 +57,7 @@
   </button>
 </div>
 
-<div>
+<div ng-show="trainingTab=='new'">
   DODAJ
 
   JAKIE POLA TUTAJ POWINNY BYC?

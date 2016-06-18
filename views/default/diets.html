@@ -4,10 +4,12 @@
   span.error {color: red; font-weight: bold}
 </style>
 
-<div class="btn-group btn-group-sm">
-  <button class="btn btn-block btn-default" ng-click="diets=false; get('diety', '')">Przeglądaj</button>
-  <button class="btn btn-block btn-default" ng-click="diets=true">Dodaj</button>
-</div>
+<nav class="navbar">
+  <div class="btn-group btn-group-sm">
+    <button type="button" class="btn btn-default navbar-btn" ng-click="diets=false; get('diety', '')">Przeglądaj</button>
+    <button type="button" class="btn btn-default navbar-btn" ng-click="diets=true">Dodaj</button>
+  </div>
+</nav>
 
 <div ng-hide="diets">
 
