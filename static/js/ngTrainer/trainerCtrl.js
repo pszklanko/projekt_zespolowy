@@ -32,4 +32,14 @@ trainerApp
           console.log(data);
         })
     };
+    $scope.addProduct = function() {
+      $http.get('addSimplyProduct.py')
+        .success( function () {
+          console.log('dodano produkt');
+        })
+        .error( function (data) {
+          console.log(data);
+        })
+    };
+    $scope.addProduct();
   });

@@ -101,3 +101,7 @@ def addRecord():
     table = data['table']
     resp = db[table].insert(**data['attr'])
     return resp
+
+def addSimplyProduct():
+    db.produkty.insert(nazwa = 'kielba', weglowodany = 10.0, bialka = 10.0, tluszcze = 10.0, ilosc_kalorii =100.0, id_producenta = 1 )
+    return 1
