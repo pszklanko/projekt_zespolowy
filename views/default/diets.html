@@ -14,6 +14,26 @@
 <div ng-hide="diets">
 
   {{diety}}
+  <p>DIETY<br>
+
+  - wybieramy rodzaj diety<br>
+  opcjonalnie: (pokazujemy produkty które zawierają najwiecej np. bialka jesli dieta bialkowa itd)<br>
+  - mamy liste produktów w ostatniej kolumnie jakiś + żeby dodać produkt do diety<br>
+  - dodajemy wyszstkie zaznaczone(dodane) produkty i zapisujemy diete<br>
+
+  Wygląda to tak:<br>
+  id diety - autoincrement<br>
+  id_uzytkownika - required<br>
+  id_produktu - required<br>
+  id_rodzaj_diety - required<br>
+
+  A więc aby utworzyć rekord diety należy dodać inserta z w/w wymaganymi danymi<br>
+  Dieta dla danego uzytkownika to zestaw wierszy zawierajacy id naszego uzytkownika<br> 
+  oraz id rodzaju diety.<br>
+
+  Aby wyswietlic diete pobieramy wszystkie rekordy dla tych 2 w/w wartosci.<br>
+  ZAWARTOŚĆ W PLIKU Co_kiedy_jak.txt<br>
+  </p>
 </div>
 
 <div ng-show="diets">

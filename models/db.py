@@ -30,7 +30,7 @@ if not request.env.web2py_runtime_gae:
     # ---------------------------------------------------------------------
     # if NOT running on Google App Engine use SQLite or other DB
     # ---------------------------------------------------------------------
-    db = DAL('mysql://root:root@localhost/trener_personalny',
+    db = DAL('mysql://root:1234@localhost/trener_personalny',
                 migrate=False, fake_migrate=True)
 else:
     # ---------------------------------------------------------------------

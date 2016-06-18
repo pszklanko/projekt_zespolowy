@@ -79,14 +79,90 @@ def trainings():
 # jesli brak kryteriow zwraca wszystkie dostepne
 def getRecord():
     data = json.loads(request.body.read())
+    # data['table'] = 'adres_uzytkownika'
     selected = []
+
     if data['table'] == 'diety':
-        for i in db().select(db[data['table']].ALL):
+        rows = db((db.diety.id_rodzaj_diety == db.rodzaje_diet.id) &
+        (db.diety.id_produktu == db.produkty.id) &
+        (db.rodzaje_diet.deleted != 1) &
+        (db.produkty.deleted != 1) &
+        (db.diety.deleted != 1)).select(db.diety.id,
+        db.rodzaje_diet.nazwa, db.produkty.nazwa)
+        for row in rows:
             selected.append({
-                "id": i.id
-                # ... tutaj powinny być wszystkie pola z tabeli
-                # analogicznie dla pozostałych tabel do których będą robione gety
+                "id": row.diety.id,
+                "nazwa_produktu": row.produkty.nazwa,
+                "rodzaj_diety": row.rodzaje_diet.nazwa
             })
+
+    if data['table'] == 'produkty':
+        rows = db((db.produkty.deleted != 1) &
+        (db.producent.deleted != 1) &
+        (db.produkty.id_producenta == db.producent.id)).select(db.produkty.ALL, db.producent.nazwa)
+        for row in rows:
+            selected.append({
+                "id": row.produkty.id,
+                "nazwa_produktu": row.produkty.nazwa,
+                "z_weglowodany": row.produkty.weglowodany,
+                "z_bialka": row.produkty.bialka,
+                "z_tluszcze": row.produkty.tluszcze,
+                "ilosc_kalorii": row.produkty.ilosc_kalorii,
+                "nazwa_producenta": row.producent.nazwa
+            })
+
+    #nalezy podać jak parametr OBOWIAZKOWY id_uzytkownika dla ktorego wyswietlamy treningi
+    #na razie na sztywno jest '1'
+    if data['table'] == 'historia_treningow':
+        rows = db((db.historia_treningow.id_uzytkownika == 1) &
+            (db.historia_treningow.deleted != 1) &
+            (db.cwiczenia.deleted != 1) &
+            (db.historia_treningow.id_cwiczenia == db.cwiczenia.id)).select(db[data['table']].ALL,
+            db.cwiczenia.nazwa)
+        for row in rows:
+            selected.append({
+                "id": row.historia_treningow.id,
+                "nazwa cwiczenia": row.cwiczenia.nazwa,
+                "ilosc_serii": row.historia_treningow.ilosc_serii,
+                "ilosc_powtorzen": row.historia_treningow.ilosc_powtorzen,
+                "obciazenie": row.historia_treningow.obciazenie,
+                "data_dodania": row.historia_treningow.data_dodania
+            })
+
+    if data['table'] == 'cwiczenia':
+        rows = db((db.cwiczenia.deleted != 1) &
+        (db.partia_miesni.deleted != 1) &
+        (db.cwiczenia.id_partii_miesni == db.partia_miesni.id)).select(db.cwiczenia.ALL, 
+        db.partia_miesni.nazwa)
+        for row in rows:
+            selected.append({
+                "id": db.cwiczenia.id,
+                "nazwa_cwiczenia": db.cwiczenia.nazwa,
+                "nazwa_partii_miesni": db.partia_miesni.nazwa,
+                "opis_cwiczenia": db.cwiczenia.opis
+            })
+
+    if data['table'] == 'adres_uzytkownika':
+        #nie wiem o co chodzi wszystko działa dopoki w selecie nie podam
+        #db.adres_uzytkownika.ALL albo cokolwiek innego dlatego wykomentowane
+        #moze ktos to rozkmini
+        rows = db((db.adres_uzytkownika.deleted != 1) &
+        (db.adres_uzytkownika.id_uzytkownika == 1) &
+        (db.uzytkownicy.deleted != 1) &
+        (db.miasta.deleted != 1) &
+        (db.adres_uzytkownika.id_uzytkownika == db.uzytkownicy.id) &
+        (db.adres_uzytkownika.id_miasta == db.miasta.id))._select(db.miasta.nazwa, 
+        db.uzytkownicy.login)
+        print rows
+        for row in rows:
+            selected.append({
+                "login": db.uzytkownicy.login,
+                "nazwa_miasta": db.miasta.nazwa
+                # "ulica": db.adres_uzytkownika.ulica,
+                # 'nr_mieszkania': db.adres_uzytkownika.nr_mieszkania
+            })
+
+    #print selected
     return json.dumps(selected)
 
 # uniwersalne dodawanie rekordu do bazy
