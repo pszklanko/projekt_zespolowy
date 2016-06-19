@@ -149,6 +149,7 @@ db.define_table(
     'historia_treningow',
     Field('id_uzytkownika',db.uzytkownicy),
     Field('id_cwiczenia', db.cwiczenia),
+    Field('czy_trening_wykonany', 'integer'),
     Field('ilosc_serii', 'integer'),
     Field('ilosc_powtorzen', 'integer'),
     Field('obciazenie', 'integer'),

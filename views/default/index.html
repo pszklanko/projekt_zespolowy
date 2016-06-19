@@ -2,8 +2,10 @@
 <html ng-app="personalTrainer">
   <head>
     <title>Trener Personalny</title>
+
     <script src="{!=URL('static','js/bower_components/angular/angular.js')!}"></script>
     <script src="{!=URL('static','js/bower_components/angular-route/angular-route.js')!}"></script>
+
     <script src="{!=URL('static','js/ngTrainer/personalTrainer.js')!}"></script>
     <script src="{!=URL('static','js/ngTrainer/trainerCtrl.js')!}"></script>
     <script src="{!=URL('static','js/ngTrainer/config.js')!}"></script>
@@ -14,6 +16,11 @@
     <link rel="stylesheet"
           type="text/css"
           href="{!=URL('static','js/bower_components/bootstrap/dist/css/bootstrap-theme.css')!}">
+    <link rel="stylesheet"
+          type="text/css"
+          href="{!=URL('static','js/bower_components/components-font-awesome/css/font-awesome.css')!}">
+
+    <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
   </head>
 
   <body ng-controller="trainerCtrl">
@@ -22,10 +29,49 @@
     </div>
     <div class="panel panel-default row">
       <div class="col-xs-3">
-        <a class="btn btn-block btn-default btn-lg" href="#/main">Strona główna</a>
-        <a class="btn btn-block btn-default btn-lg" href="#/diets">Diety</a>
-        <a class="btn btn-block btn-default btn-lg" href="#/trainings">Treningi</a>
-        <a class="btn btn-block btn-default btn-lg" href="#/products">Produkty</a>
+        <a class="btn btn-block btn-default btn-lg"
+           href="#/main"
+           ng-click="successfulOperation = false;"
+           ng-show="isLogged">
+          <i class="fa fa-home" aria-hidden="true"></i> Strona główna
+        </a>
+        <a class="btn btn-block btn-default btn-lg"
+           href="#/diets"
+           ng-click="successfulOperation = false; get('diety', userId)"
+           ng-show="isLogged">
+          <i class="fa fa-cutlery" aria-hidden="true"></i> Diety
+        </a>
+        <a class="btn btn-block btn-default btn-lg"
+           href="#/trainings"
+           ng-click="successfulOperation = false;"
+           ng-show="isLogged">
+          <i class="fa fa-futbol-o" aria-hidden="true"></i> Treningi
+        </a>
+        <a class="btn btn-block btn-default btn-lg"
+           href="#/products"
+           ng-click="successfulOperation = false; get('producent')"
+           ng-show="isLogged">
+          <i class="fa fa-shopping-basket" aria-hidden="true"></i> Produkty
+        </a>
+        <a class="btn btn-block btn-default btn-lg"
+           href="#/main"
+           ng-click="successfulOperation = false; uzytkownik = {}; isLogged = false"
+           ng-show="isLogged">
+          <i class="fa fa-sign-out" aria-hidden="true"></i> Wyloguj
+        </a>
+
+        <button ng-show="!isLogged"
+                type="button"
+                class="btn btn-block btn-default btn-lg"
+                ng-click="logowanie=false; get('uzytkownicy'); uzytkownik = {}">
+          <i class="fa fa-sign-in" aria-hidden="true"></i> Logowanie
+        </button>
+        <button ng-show="!isLogged"
+                type="button"
+                class="btn btn-block btn-default btn-lg"
+                ng-click="logowanie=true; uzytkownik = {}">
+          <i class="fa fa-user-plus" aria-hidden="true"></i> Rejestracja
+        </button>
       </div>
       <div class="col-xs-8">
         <ng-view />

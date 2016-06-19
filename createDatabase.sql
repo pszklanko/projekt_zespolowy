@@ -179,7 +179,7 @@ CREATE TABLE IF NOT EXISTS `rodzaje_diet` (
 -- Zrzut struktury tabela trener_personalny.treningi
 DROP TABLE IF EXISTS `treningi`;
 CREATE TABLE IF NOT EXISTS `treningi` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_cwiczenia` int(11) NOT NULL,
   `id_uzytkownika` int(11) NOT NULL,
   `id_dnia` int(11) NOT NULL,

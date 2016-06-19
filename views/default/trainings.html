@@ -6,103 +6,129 @@
 
 <nav class="navbar">
   <div class="btn-group btn-group-sm">
-    <button type="button" class="btn btn-default navbar-btn" ng-click="get('historia_treningow', ''); trainings('history')">Historia treningów</button>
-    <button type="button" class="btn btn-default navbar-btn" ng-click="trainings('add')">Dodaj wykonany</button>
-    <button type="button" class="btn btn-default navbar-btn" ng-click="trainings('new')">Utwórz trening</button>
+    <button type="button" class="btn btn-default navbar-btn" ng-click="get('historia_treningow'); trainings('history')">Historia treningów</button>
+    <button type="button" class="btn btn-default navbar-btn" ng-click="get('treningi'); get('cwiczenia'); trainings('add')">Dodaj wykonany</button>
+    <button type="button" class="btn btn-default navbar-btn" ng-click="get('cwiczenia'); trainings('new')">Utwórz trening</button>
   </div>
 </nav>
 
-<div ng-show="trainingTab=='history'">
+<div ng-show="trainingTab=='historia treningow'">
   HISTORIA
 
-  {{trainingHistory}}
+  {{trainingsHistory}}
   <br>
 </div>
 
 <div ng-show="trainingTab=='add'">
-  <p>uzupełnij wymagane pola, aby dodać ?WYKONANY? trening
-HISTORIA TRENINGOW<br>
+<form name="trainingForm" novalidate>
+  <div class="well">
 
-REJESTROWANIE TRENINGU:<br>
-Widze to tak:<br>
-1.Uzytkownik klika zarejestruj trening<br>
-2.Wpisuje date treningu - my jakas funkcja data sprawdzamy jaki to dzien<br>
-3.Wyswietlamy liste cwiczen dla danego dnia i uzytkownika<br>
-TABELA REJESTROWNIA CWICZENIA<br>
-checkbox | nazwa_cwiczenia | ilosc_serii | ilośc_powtorzen |<br>
+    <h3>Dodaj wykonany trening</h3>
+    <div class="form-group">
+      <label>Dzień treningu</label>
+      <select class="form-control"
+              name="pole"
+              style="width: auto"
+              ng-model="trening.id_dnia"
+              required>
+        <option value="1">Poniedziałek</option>
+        <option value="2">Wtorek</option>
+        <option value="3">Środa</option>
+        <option value="4">Czwartek</option>
+        <option value="5">Piątek</option>
+        <option value="6">Sobota</option>
+        <option value="7">Niedziela</option>
+      </select>
 
-ABY DODAĆ REKORD TRZEBA:<br>
-
-- id_uzytkownika<br>
-- id_cwiczenia<br>
-- czy_trening_wykonano #1-tak, 0-nie (checkbox) ( jesli tak dajemy mozliwosc wypelnienia <br>pozostalych pul tj ilosc_serii,powtorzen i obciazenia, data zawsze.)<br>
-- ilosc_serii<br>
-- ilosc_powtorzen<br>
-- obciazenie<br>
-- data_dodania (data ktora uzytkownik wpisal na poczatku w input!)<br>
-ZAWARTOŚĆ W PLIKU Co_kiedy_jak.txt<br>
-  </p>
-  <form name="productForm" novalidate>
-    <div class="well">
-
-      <h3>Pole 1</h3>
-      <div class="form-group">
-        <label>cwiczenie</label>
-        <input name="pole" class="form-control" ng-model="treningi.nazwa" required />
-        <span class="error" ng-show="!treningi.tluszcze">
+      <span class="error" ng-show="!trening.id_dnia">
+        Uzupełnij pole
+      </span>
+      <br>
+      <label>cwiczenia</label>
+        <select class="form-control"
+                name="pole"
+                style="width: auto"
+                ng-model="trening['id_cwiczenia']"
+                required>
+          <option ng-repeat="treningg in treningi" ng-if="treningg['id_dnia'] == trening['id_dnia']"  ng-value="treningg['id_cwiczenia']">{{cwiczenia[treningg['id_cwiczenia']]['nazwa_cwiczenia']}}</option>
+        </select>
+        <span class="error" ng-show="!trening['id_cwiczenia']">
           Uzupełnij pole
         </span>
-        <br>
-        <label>ilosc serii</label>
-        <input name="pole" class="form-control" ng-model="treningi.ilosc_serii" required />
-        <span class="error" ng-show="!treningi.nazwa">
-          Uzupełnij pole
-        </span>
-        <br>
-        <label>ilosc powtorzen</label>
-        <input name="pole" class="form-control" ng-model="treningi.ilosc_powtorzen" required />
-        <span class="error" ng-show="!treningi.weglowodany">
-          Uzupełnij pole
-        </span>
-        <br>
-        <label>obciazenie</label>
-        <input name="pole" class="form-control" ng-model="treningi.obciazenie" required />
-        <span class="error" ng-show="!treningi.bialka">
-          Uzupełnij pole
-        </span>
+      <br>
+      <label>czy wykonano</label>
+      <input name="pole" type="checkbox" class="form-control" ng-model="trening.czy_trening_wykonany" style="width: auto" required/>
+      <br>
+      <div ng-show="trening.czy_trening_wykonany">
+      <label>liczba serii</label>
+      <input name="pole" class="form-control" ng-model="trening.ilosc_serii" style="width: auto" required/>
+      <span class="error" ng-show="!trening.ilosc_serii">
+        Uzupełnij pole
+      </span>
+      <br>
+      <label>liczba powtórzeń</label>
+      <input name="pole" class="form-control" ng-model="trening.ilosc_powtorzen" style="width: auto" required/>
+      <span class="error" ng-show="!trening.ilosc_powtorzen">
+        Uzupełnij pole
+      </span>
+      <br>
+      <label>obciążenie</label>
+      <input name="pole" class="form-control" ng-model="trening.obciazenie" style="width: auto" required/>
+      <span class="error" ng-show="!trening.obciazenie">
+        Uzupełnij pole
+      </span>
+      <br>
+      <label>data</label>
+      <input name="pole" type="date" class="form-control" ng-model="trening.data_dodania" style="width: auto" required/>
+      <span class="error" ng-show="!trening.data_dodania">
+        Uzupełnij pole
+      </span>
       </div>
     </div>
-  </form>
-  <button ng-click='add("produkty", produkt)' ng-show='productForm.$valid'>
-    Dodaj
-  </button>
+  </div>
+</form>
+<button ng-click='addTraining(trening)' ng-show='trainingForm.$valid'>
+  Dodaj
+</button>
 </div>
 
 <div ng-show="trainingTab=='new'">
-  DODAJ
+  <form name="newTrainingForm" novalidate>
+    <div class="well">
 
-  JAKIE POLA TUTAJ POWINNY BYC?
-
-TRENINGI<br>
-<br>
-Podobnie jak w dietach 1 trening sklada się z wielu rekordów dla których unikalne będą:<br>
-id_uzytkownika + id_dnia<br>
-<br>
-Czyli aby utworzyc trening należy:<br>
-<br>
-- wybieramy dzien treningu<br>
-- wyswietlamy liste cwiczen ( moze byc checkbox lub taki + jak w produktach)<br>
-- dodajemy wszystkie cwiczenia i zapisujemy je jako trening<br>
-<br>
-CO BY SIE PRZYDALO <br>
-1. Sortowanie cwiczen po partii mięśni<br>
-2. Ew dodanie treningów na rodzaje parti miesni - NP. trening nóg itd. Jednak ja stwierdzilem<br>
-ze jednego dnia mozna robic np. nogi i brzuch wiec moim zdaniem treningi dzienne sa spoko.<br>
-3. Innego rodzaju sortowania<br>
-<br>
-DANE ABY DODAĆ TRENING (MUST HAVE)<br>
-- id_cwiczenia<br>
-- id_uzytkownika<br>
-- id_dnia<br>
-  ZAWARTOŚĆ W PLIKU Co_kiedy_jak.txt<br>
+      <h3>Dodaj nowy trening</h3>
+      <div class="form-group">
+        <label>Dzień treningu</label>
+        <input name="pole" type="date" class="form-control" ng-model="newTraining.date" style="width: auto" required />
+        <span class="error" ng-show="!newTraining.date">
+          Uzupełnij pole
+        </span>
+        <br>
+        <label>cwiczenia</label>
+        <div ng-repeat="link in exercises track by $index">
+          <select class="form-control"
+                  name="pole"
+                  style="width: auto"
+                  ng-model="exercises[$index]"
+                  required>
+            <option ng-repeat="cwiczenie in cwiczenia" ng-value="cwiczenie['id']">{{cwiczenie.nazwa_cwiczenia}}</option>
+          </select>
+          <span class="error" ng-show="!exercises[$index]">
+            Uzupełnij pole
+          </span>
+          <i class="fa fa-plus"
+              ng-show="$last"
+              ng-click="addExercise()">
+          </i>
+          <i class="fa fa-minus"
+              ng-show="$last && $index != 0"
+              ng-click="removeExercise()">
+          </i>
+        </div>
+      </div>
+    </div>
+  </form>
+  <button ng-click='addExercises(exercises, newTraining.date)' ng-show='newTrainingForm.$valid'>
+    Dodaj
+  </button>
 </div>
