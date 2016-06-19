@@ -1,0 +1,80 @@
+Czego kiedy potrzeba.
+
+DIETY
+
+- wybieramy rodzaj diety
+opcjonalnie: (pokazujemy produkty które zawierają najwiecej np. bialka jesli dieta bialkowa itd)
+- mamy liste produktów w ostatniej kolumnie jakiś + żeby dodać produkt do diety
+- dodajemy wyszstkie zaznaczone(dodane) produkty i zapisujemy diete
+
+Wygląda to tak:
+id diety - autoincrement
+id_uzytkownika - required
+id_produktu - required
+id_rodzaj_diety - required
+
+A więc aby utworzyć rekord diety należy dodać inserta z w/w wymaganymi danymi
+Dieta dla danego uzytkownika to zestaw wierszy zawierajacy id naszego uzytkownika 
+oraz id rodzaju diety.
+
+Aby wyswietlic diete pobieramy wszystkie rekordy dla tych 2 w/w wartosci.
+
+TRENINGI
+
+Podobnie jak w dietach 1 trening sklada się z wielu rekordów dla których unikalne będą:
+id_uzytkownika + id_dnia
+
+Czyli aby utworzyc trening należy:
+
+- wybieramy dzien treningu
+- wyswietlamy liste cwiczen ( moze byc checkbox lub taki + jak w produktach)
+- dodajemy wszystkie cwiczenia i zapisujemy je jako trening
+
+CO BY SIE PRZYDALO 
+1. Sortowanie cwiczen po partii mięśni
+2. Ew dodanie treningów na rodzaje parti miesni - NP. trening nóg itd. Jednak ja stwierdzilem
+ze jednego dnia mozna robic np. nogi i brzuch wiec moim zdaniem treningi dzienne sa spoko.
+3. Innego rodzaju sortowania
+
+DANE ABY DODAĆ TRENING (MUST HAVE)
+- id_cwiczenia
+- id_uzytkownika
+- id_dnia
+
+
+HISTORIA TRENINGOW
+
+REJESTROWANIE TRENINGU:
+Widze to tak:
+1.Uzytkownik klika zarejestruj trening
+2.Wpisuje date treningu - my jakas funkcja data sprawdzamy jaki to dzien
+3.Wyswietlamy liste cwiczen dla danego dnia i uzytkownika
+TABELA REJESTROWNIA CWICZENIA
+checkbox | nazwa_cwiczenia | ilosc_serii | ilośc_powtorzen |
+
+ABY DODAĆ REKORD TRZEBA:
+
+- id_uzytkownika
+- id_cwiczenia
+- czy_trening_wykonano #1-tak, 0-nie (checkbox) ( jesli tak dajemy mozliwosc wypelnienia pozostalych pul tj ilosc_serii,powtorzen i obciazenia, data zawsze.)
+- ilosc_serii
+- ilosc_powtorzen
+- obciazenie
+- data_dodania (data ktora uzytkownik wpisal na poczatku w input!)
+
+DODAWNAIE PRODUKTU FORMULARZ
+
+- nazwa 
+- weglowodany (ilosc)
+- bialka (ilosc)
+- tluszcze (wszystkie 3 na 100g czyli ilość % w 100g)
+- ilosc_kalorii
+- id_producenta (jakis select?)
+
+OPCJONALNIE - dajemy mozliwosc dodania producenta 
+DODANIE PRODUCENTA FORMULARZ
+- nazwa
+
+
+Oczywiscie tam gdzie pobieramy dane do selectów pokazujemy nazwy, a w formularzu
+przesylamy najczesciej id'ki

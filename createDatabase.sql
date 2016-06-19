@@ -16,9 +16,9 @@ CREATE DATABASE IF NOT EXISTS `trener_personalny` /*!40100 DEFAULT CHARACTER SET
 USE `trener_personalny`;
 
 
--- Zrzut struktury tabela trener_personalny.adres uzytkownika
-DROP TABLE IF EXISTS `adres uzytkownika`;
-CREATE TABLE IF NOT EXISTS `adres uzytkownika` (
+-- Zrzut struktury tabela trener_personalny.adres_uzytkownika
+DROP TABLE IF EXISTS `adres_uzytkownika`;
+CREATE TABLE IF NOT EXISTS `adres_uzytkownika` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_uzytkownika` int(11) NOT NULL,
   `id_miasta` int(11) NOT NULL,
@@ -26,6 +26,7 @@ CREATE TABLE IF NOT EXISTS `adres uzytkownika` (
   `nr_mieszkania` varchar(60) COLLATE utf8_polish_ci DEFAULT NULL,
   `deleted` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
+  UNIQUE KEY `id_uzytkownika_id_miasta` (`id_uzytkownika`,`id_miasta`),
   KEY `id_miasta` (`id_miasta`),
   KEY `ad_id_user` (`id_uzytkownika`),
   CONSTRAINT `ad_id_user` FOREIGN KEY (`id_uzytkownika`) REFERENCES `uzytkownicy` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
@@ -45,7 +46,7 @@ CREATE TABLE IF NOT EXISTS `cwiczenia` (
   `deleted` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `id_pmiesni` (`id_partii_miesni`),
-  CONSTRAINT `id_pmiesni` FOREIGN KEY (`id_partii_miesni`) REFERENCES `partia miesni` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `id_pmiesni` FOREIGN KEY (`id_partii_miesni`) REFERENCES `partia_miesni` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 -- Data exporting was unselected.
@@ -62,8 +63,10 @@ CREATE TABLE IF NOT EXISTS `diety` (
   PRIMARY KEY (`id`),
   KEY `id_produktu` (`id_produktu`),
   KEY `id_rdiety` (`id_rodzaj_diety`),
+  KEY `id_duzytkownik` (`id_uzytkownika`),
+  CONSTRAINT `id_duzytkownik` FOREIGN KEY (`id_uzytkownika`) REFERENCES `uzytkownicy` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `id_produktu` FOREIGN KEY (`id_produktu`) REFERENCES `produkty` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `id_rdiety` FOREIGN KEY (`id_rodzaj_diety`) REFERENCES `rodzaje diet` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `id_rdiety` FOREIGN KEY (`id_rodzaj_diety`) REFERENCES `rodzaje_diet` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 -- Data exporting was unselected.
@@ -81,12 +84,13 @@ CREATE TABLE IF NOT EXISTS `dzien_tygodnia` (
 -- Data exporting was unselected.
 
 
--- Zrzut struktury tabela trener_personalny.historia treningow
-DROP TABLE IF EXISTS `historia treningow`;
-CREATE TABLE IF NOT EXISTS `historia treningow` (
+-- Zrzut struktury tabela trener_personalny.historia_treningow
+DROP TABLE IF EXISTS `historia_treningow`;
+CREATE TABLE IF NOT EXISTS `historia_treningow` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_uzytkownika` int(11) NOT NULL,
   `id_cwiczenia` int(11) NOT NULL,
+  `czy_trening_wykonany` int(11) NOT NULL,
   `ilosc_serii` int(11) DEFAULT NULL,
   `ilosc_powtorzen` int(11) DEFAULT NULL,
   `obciazenie` int(11) DEFAULT NULL,
@@ -117,9 +121,9 @@ CREATE TABLE IF NOT EXISTS `miasta` (
 -- Data exporting was unselected.
 
 
--- Zrzut struktury tabela trener_personalny.partia miesni
-DROP TABLE IF EXISTS `partia miesni`;
-CREATE TABLE IF NOT EXISTS `partia miesni` (
+-- Zrzut struktury tabela trener_personalny.partia_miesni
+DROP TABLE IF EXISTS `partia_miesni`;
+CREATE TABLE IF NOT EXISTS `partia_miesni` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nazwa` varchar(255) COLLATE utf8_polish_ci NOT NULL,
   `deleted` tinyint(1) NOT NULL DEFAULT '0',
@@ -160,9 +164,9 @@ CREATE TABLE IF NOT EXISTS `produkty` (
 -- Data exporting was unselected.
 
 
--- Zrzut struktury tabela trener_personalny.rodzaje diet
-DROP TABLE IF EXISTS `rodzaje diet`;
-CREATE TABLE IF NOT EXISTS `rodzaje diet` (
+-- Zrzut struktury tabela trener_personalny.rodzaje_diet
+DROP TABLE IF EXISTS `rodzaje_diet`;
+CREATE TABLE IF NOT EXISTS `rodzaje_diet` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nazwa` varchar(255) COLLATE utf8_polish_ci NOT NULL,
   `deleted` tinyint(1) NOT NULL DEFAULT '0',

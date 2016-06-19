@@ -20,7 +20,28 @@
 </div>
 
 <div ng-show="trainingTab=='add'">
-  <p>uzupełnij wymagane pola, aby dodać ?WYKONANY? trening</p>
+  <p>uzupełnij wymagane pola, aby dodać ?WYKONANY? trening
+HISTORIA TRENINGOW<br>
+
+REJESTROWANIE TRENINGU:<br>
+Widze to tak:<br>
+1.Uzytkownik klika zarejestruj trening<br>
+2.Wpisuje date treningu - my jakas funkcja data sprawdzamy jaki to dzien<br>
+3.Wyswietlamy liste cwiczen dla danego dnia i uzytkownika<br>
+TABELA REJESTROWNIA CWICZENIA<br>
+checkbox | nazwa_cwiczenia | ilosc_serii | ilośc_powtorzen |<br>
+
+ABY DODAĆ REKORD TRZEBA:<br>
+
+- id_uzytkownika<br>
+- id_cwiczenia<br>
+- czy_trening_wykonano #1-tak, 0-nie (checkbox) ( jesli tak dajemy mozliwosc wypelnienia <br>pozostalych pul tj ilosc_serii,powtorzen i obciazenia, data zawsze.)<br>
+- ilosc_serii<br>
+- ilosc_powtorzen<br>
+- obciazenie<br>
+- data_dodania (data ktora uzytkownik wpisal na poczatku w input!)<br>
+ZAWARTOŚĆ W PLIKU Co_kiedy_jak.txt<br>
+  </p>
   <form name="productForm" novalidate>
     <div class="well">
 
@@ -61,4 +82,27 @@
   DODAJ
 
   JAKIE POLA TUTAJ POWINNY BYC?
+
+TRENINGI<br>
+<br>
+Podobnie jak w dietach 1 trening sklada się z wielu rekordów dla których unikalne będą:<br>
+id_uzytkownika + id_dnia<br>
+<br>
+Czyli aby utworzyc trening należy:<br>
+<br>
+- wybieramy dzien treningu<br>
+- wyswietlamy liste cwiczen ( moze byc checkbox lub taki + jak w produktach)<br>
+- dodajemy wszystkie cwiczenia i zapisujemy je jako trening<br>
+<br>
+CO BY SIE PRZYDALO <br>
+1. Sortowanie cwiczen po partii mięśni<br>
+2. Ew dodanie treningów na rodzaje parti miesni - NP. trening nóg itd. Jednak ja stwierdzilem<br>
+ze jednego dnia mozna robic np. nogi i brzuch wiec moim zdaniem treningi dzienne sa spoko.<br>
+3. Innego rodzaju sortowania<br>
+<br>
+DANE ABY DODAĆ TRENING (MUST HAVE)<br>
+- id_cwiczenia<br>
+- id_uzytkownika<br>
+- id_dnia<br>
+  ZAWARTOŚĆ W PLIKU Co_kiedy_jak.txt<br>
 </div>
