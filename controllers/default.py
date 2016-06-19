@@ -79,15 +79,45 @@ def trainings():
 # jesli brak kryteriow zwraca wszystkie dostepne
 def getRecord():
     data = json.loads(request.body.read())
-    # data['table'] = 'adres_uzytkownika'
+    #data['table'] = 'adres_uzytkownika'
     selected = []
+    if data['table'] == 'producent':
+        for row in db().select(db.producent.ALL):
+            selected.append({
+                "id": row.id,
+                "nazwa_producenta": row.nazwa
+            })
+
+    if data['table'] == 'rodzaje_diet':
+        for row in db().select(db[data['table']].ALL):
+            selected.append({
+                "id": row.id,
+                "nazwa": row.nazwa
+            })
+
+    if data['table'] == 'uzytkownicy':
+        for row in db().select(db[data['table']].ALL):
+            selected.append({
+                "id": row.id,
+                "login": row.login,
+                "haslo": row.haslo
+            })
+
+    if data['table'] == 'treningi':
+        for row in db().select(db[data['table']].ALL):
+            selected.append({
+                "id_cwiczenia": row.id_cwiczenia,
+                "id_uzytkownika": row.id_uzytkownika,
+                "id_dnia": row.id_dnia
+            })
 
     if data['table'] == 'diety':
         rows = db((db.diety.id_rodzaj_diety == db.rodzaje_diet.id) &
         (db.diety.id_produktu == db.produkty.id) &
         (db.rodzaje_diet.deleted != 1) &
         (db.produkty.deleted != 1) &
-        (db.diety.deleted != 1)).select(db.diety.id,
+        (db.diety.deleted != 1) &
+        (db.diety.id_uzytkownika == data['attr'])).select(db.diety.id,
         db.rodzaje_diet.nazwa, db.produkty.nazwa)
         for row in rows:
             selected.append({
@@ -128,46 +158,40 @@ def getRecord():
                 "obciazenie": row.historia_treningow.obciazenie,
                 "data_dodania": row.historia_treningow.data_dodania
             })
-
     if data['table'] == 'cwiczenia':
         rows = db((db.cwiczenia.deleted != 1) &
         (db.partia_miesni.deleted != 1) &
-        (db.cwiczenia.id_partii_miesni == db.partia_miesni.id)).select(db.cwiczenia.ALL, 
+        (db.cwiczenia.id_partii_miesni == db.partia_miesni.id)).select(db.cwiczenia.ALL,
         db.partia_miesni.nazwa)
         for row in rows:
             selected.append({
-                "id": db.cwiczenia.id,
-                "nazwa_cwiczenia": db.cwiczenia.nazwa,
-                "nazwa_partii_miesni": db.partia_miesni.nazwa,
-                "opis_cwiczenia": db.cwiczenia.opis
+                "id": row.cwiczenia.id,
+                "nazwa_cwiczenia": row.cwiczenia.nazwa,
+                "nazwa_partii_miesni": row.partia_miesni.nazwa,
+                "opis_cwiczenia": row.cwiczenia.opis
             })
 
     if data['table'] == 'adres_uzytkownika':
-        #nie wiem o co chodzi wszystko działa dopoki w selecie nie podam
-        #db.adres_uzytkownika.ALL albo cokolwiek innego dlatego wykomentowane
-        #moze ktos to rozkmini
         rows = db((db.adres_uzytkownika.deleted != 1) &
         (db.adres_uzytkownika.id_uzytkownika == 1) &
         (db.uzytkownicy.deleted != 1) &
         (db.miasta.deleted != 1) &
         (db.adres_uzytkownika.id_uzytkownika == db.uzytkownicy.id) &
-        (db.adres_uzytkownika.id_miasta == db.miasta.id))._select(db.miasta.nazwa, 
+        (db.adres_uzytkownika.id_miasta == db.miasta.id)).select(db.miasta.nazwa,
         db.uzytkownicy.login)
-        print rows
         for row in rows:
             selected.append({
-                "login": db.uzytkownicy.login,
-                "nazwa_miasta": db.miasta.nazwa
-                # "ulica": db.adres_uzytkownika.ulica,
-                # 'nr_mieszkania': db.adres_uzytkownika.nr_mieszkania
+                "login": row.uzytkownicy.login,
+                "nazwa_miasta": row.miasta.nazwa,
+                "ulica": row.adres_uzytkownika.ulica,
+                'nr_mieszkania': row.adres_uzytkownika.nr_mieszkania
             })
-
-    #print selected
     return json.dumps(selected)
 
 # uniwersalne dodawanie rekordu do bazy
 def addRecord():
     data = json.loads(request.body.read())
     table = data['table']
+    print data['attr']
     resp = db[table].insert(**data['attr'])
     return json.dumps(resp)

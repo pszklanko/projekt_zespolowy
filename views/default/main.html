@@ -1,1 +1,74 @@
-Strona główna
+<style>
+  .ng-invalid {background-color: lightpink;}
+  .ng-valid {background-color: : lightgreen;}
+  span.error {color: red; font-weight: bold}
+</style>
+
+<div ng-show="logowanie" ng-show="!isLogged">
+  <form name="regForm" novalidate>
+    <div class="well">
+
+      <h3>Rejestracja</h3>
+      <div class="form-group">
+        <label>Login</label>
+        <input name="pole" class="form-control" ng-model="uzytkownik.login" style="width: auto" required />
+        <span class="error" ng-show="!uzytkownik.login">
+          Uzupełnij pole
+        </span>
+        <br>
+        <label>Email</label>
+        <input name="pole" type="email" class="form-control" ng-model="uzytkownik.email" style="width: auto" required />
+        <span class="error" ng-show="!uzytkownik.email">
+          Uzupełnij pole
+        </span>
+        <br>
+        <label>Hasło</label>
+        <input name="pole" type="password" class="form-control" ng-model="uzytkownik.haslo" style="width: auto" required />
+        <span class="error" ng-show="!uzytkownik.haslo">
+          Uzupełnij pole
+        </span>
+        <br>
+        <label>Powtórz hasło</label>
+        <input name="pole" type="password" class="form-control" ng-model="uzytkownik.powHaslo" style="width: auto" required />
+        <span class="error" ng-show="!uzytkownik.powHaslo">
+          Uzupełnij pole
+        </span>
+      </div>
+    </div>
+  </form>
+  <button ng-click="register(uzytkownik)" ng-show='regForm.$valid'>
+    Rejestruj
+  </button>
+</div>
+
+<div ng-show="!logowanie && !isLogged">
+  <form name="loggingForm" novalidate>
+    <div class="well">
+
+      <h3>Logowanie</h3>
+      <div class="form-group">
+        <label>Login</label>
+        <input name="pole" class="form-control" ng-model="uzytkownik.login" style="width: auto" required />
+        <span class="error" ng-show="!uzytkownik.login">
+          Uzupełnij pole
+        </span>
+        <br>
+        <label>Hasło</label>
+        <input name="pole" type="password" class="form-control" ng-model="uzytkownik.haslo" style="width: auto" required />
+        <span class="error" ng-show="!uzytkownik.haslo">
+          Uzupełnij pole
+        </span>
+      </div>
+    </div>
+  </form>
+  <button ng-click="isRegistered(uzytkownik)" ng-show='loggingForm.$valid'>
+    Loguj
+  </button>
+</div>
+
+
+<div ng-show="isLogged">
+  <h3>
+    WITAJ {{uzytkownik.login}}
+  </h3>
+</div>
