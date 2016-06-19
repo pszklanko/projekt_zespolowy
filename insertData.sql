@@ -73,27 +73,27 @@ insert into `uzytkownicy`(`login`, `haslo`, `email`) values('MarlenkaDuzeD', 'cy
 
 ## adres uzytkownika
 
-INSERT INTO `adres uzytkownika` (`id_uzytkownika`,`id_miasta`,`ulica`,`nr_mieszkania`) VALUES(1,1,'Płaska', 'A3/22');
-INSERT INTO `adres uzytkownika` (`id_uzytkownika`,`id_miasta`,`ulica`,`nr_mieszkania`) VALUES(2,1,'Wąska', '57');
-INSERT INTO `adres uzytkownika` (`id_uzytkownika`,`id_miasta`,`ulica`,`nr_mieszkania`) VALUES(3,1,'Duża', 'B/11');
-INSERT INTO `adres uzytkownika` (`id_uzytkownika`,`id_miasta`,`ulica`,`nr_mieszkania`) VALUES(4,1,'Długa', '7/23');
-INSERT INTO `adres uzytkownika` (`id_uzytkownika`,`id_miasta`,`ulica`,`nr_mieszkania`) VALUES(5,1,'Zielona', '9');
+INSERT INTO `adres_uzytkownika` (`id_uzytkownika`,`id_miasta`,`ulica`,`nr_mieszkania`) VALUES(1,1,'Płaska', 'A3/22');
+INSERT INTO `adres_uzytkownika` (`id_uzytkownika`,`id_miasta`,`ulica`,`nr_mieszkania`) VALUES(2,1,'Wąska', '57');
+INSERT INTO `adres_uzytkownika` (`id_uzytkownika`,`id_miasta`,`ulica`,`nr_mieszkania`) VALUES(3,1,'Duża', 'B/11');
+INSERT INTO `adres_uzytkownika` (`id_uzytkownika`,`id_miasta`,`ulica`,`nr_mieszkania`) VALUES(4,1,'Długa', '7/23');
+INSERT INTO `adres_uzytkownika` (`id_uzytkownika`,`id_miasta`,`ulica`,`nr_mieszkania`) VALUES(5,1,'Zielona', '9');
 
 ## parite miesni
 
-INSERT INTO `partia miesni` (`nazwa`) values('Barki');
-INSERT INTO `partia miesni` (`nazwa`) values('Klata');
-INSERT INTO `partia miesni` (`nazwa`) values('Biceps');
-INSERT INTO `partia miesni` (`nazwa`) values('Triceps');
-INSERT INTO `partia miesni` (`nazwa`) values('Plecy');
-INSERT INTO `partia miesni` (`nazwa`) values('Brzuch');
-INSERT INTO `partia miesni` (`nazwa`) values('Nogi');
+INSERT INTO `partia_miesni` (`nazwa`) values('Barki');
+INSERT INTO `partia_miesni` (`nazwa`) values('Klata');
+INSERT INTO `partia_miesni` (`nazwa`) values('Biceps');
+INSERT INTO `partia_miesni` (`nazwa`) values('Triceps');
+INSERT INTO `partia_miesni` (`nazwa`) values('Plecy');
+INSERT INTO `partia_miesni` (`nazwa`) values('Brzuch');
+INSERT INTO `partia_miesni` (`nazwa`) values('Nogi');
 
 ## rodzaje diet
 
-INSERT INTO `rodzaje diet` (`nazwa`) values('Białkowa');
-INSERT INTO `rodzaje diet` (`nazwa`) values('Węglowodanowa');
-INSERT INTO `rodzaje diet` (`nazwa`) values('Tłuszczowa');
+INSERT INTO `rodzaje_diet` (`nazwa`) values('Białkowa');
+INSERT INTO `rodzaje_diet` (`nazwa`) values('Węglowodanowa');
+INSERT INTO `rodzaje_diet` (`nazwa`) values('Tłuszczowa');
 
 ## producenci
 
