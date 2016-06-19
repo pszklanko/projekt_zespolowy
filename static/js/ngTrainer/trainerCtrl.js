@@ -152,6 +152,11 @@ trainerApp
     };
 
     $scope.addTraining = function (training) {
+      delete training.id_dnia;
+      day = training.data_dodania.getDate() < 10 ? '0'+training.data_dodania.getDate() : training.data_dodania.getDate();
+      month = training.data_dodania.getMonth() < 10 ? '0'+(training.data_dodania.getMonth()+1) : training.data_dodania.getMonth()+1;
+      year = training.data_dodania.getFullYear();
+      training.data_dodania = year+'-'+month+'-'+day;
       training['id_uzytkownika'] = $scope.userId;
       if (training['czy_trening_wykonany']) {
         training['czy_trening_wykonany'] = '1';
@@ -159,7 +164,6 @@ trainerApp
       else {
         training['czy_trening_wykonany'] = '0';
       }
-      console.log(training);
       $scope.add('historia_treningow', training);
     }
 
