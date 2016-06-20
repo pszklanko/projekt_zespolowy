@@ -152,12 +152,13 @@ def getRecord():
         for row in rows:
             selected.append({
                 "id": row.historia_treningow.id,
-                "nazwa cwiczenia": row.cwiczenia.nazwa,
+                "nazwa_cwiczenia": row.cwiczenia.nazwa,
                 "ilosc_serii": row.historia_treningow.ilosc_serii,
                 "ilosc_powtorzen": row.historia_treningow.ilosc_powtorzen,
                 "obciazenie": row.historia_treningow.obciazenie,
-                "data_dodania": row.historia_treningow.data_dodania
+                "data_dodania": str(row.historia_treningow.data_dodania)
             })
+
     if data['table'] == 'cwiczenia':
         rows = db((db.cwiczenia.deleted != 1) &
         (db.partia_miesni.deleted != 1) &
@@ -192,6 +193,5 @@ def getRecord():
 def addRecord():
     data = json.loads(request.body.read())
     table = data['table']
-    print data['attr']
     resp = db[table].insert(**data['attr'])
     return json.dumps(resp)

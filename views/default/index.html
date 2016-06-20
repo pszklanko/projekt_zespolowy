@@ -63,7 +63,7 @@
                     <li class="page-scroll">
                       <a
                          href="#/trainings"
-                         ng-click="successfulOperation = false;"
+                         ng-click="successfulOperation = false; get('historia_treningow'); trainings('historia treningow')"
                          ng-show="isLogged">
                         <i class="fa fa-futbol-o" aria-hidden="true"></i> Treningi
                       </a>
@@ -71,7 +71,7 @@
                     <li class="page-scroll">
                       <a
                          href="#/products"
-                         ng-click="successfulOperation = false; get('producent')"
+                         ng-click="successfulOperation = false; get('producent'); products=false"
                          ng-show="isLogged">
                         <i class="fa fa-shopping-basket" aria-hidden="true"></i> Produkty
                       </a>

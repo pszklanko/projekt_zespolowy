@@ -36,9 +36,14 @@
       </div>
     </div>
   </form>
-  <button ng-click="register(uzytkownik)" ng-show='regForm.$valid'>
+  <button ng-click="register(uzytkownik)"
+          class="btn btn-block btn-default btn-lg"
+          ng-show='regForm.$valid'
+          style="width: auto">
     Rejestruj
   </button>
+  <i class="fa fa-check fa-5x" aria-hidden="true" ng-show="successfulOperation"></i>
+
 </div>
 
 <div ng-show="!logowanie && !isLogged">
@@ -61,7 +66,10 @@
       </div>
     </div>
   </form>
-  <button ng-click="isRegistered(uzytkownik)" ng-show='loggingForm.$valid'>
+  <button ng-click="isRegistered(uzytkownik)"
+          class="btn btn-block btn-default btn-lg"
+          ng-show='loggingForm.$valid'
+          style="width: auto">
     Loguj
   </button>
 </div>

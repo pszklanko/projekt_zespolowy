@@ -39,7 +39,7 @@ trainerApp
           else if (tableName == 'producent') {
             $scope.producenci = data;
           }
-          else if (tableName == 'historia treningow') {
+          else if (tableName == 'historia_treningow') {
             $scope.trainingHistory = data;
           }
           else if (tableName == 'cwiczenia') {
@@ -96,6 +96,8 @@ trainerApp
       if (uzytkownik.haslo == uzytkownik.powHaslo) {
         delete uzytkownik.powHaslo;
         $scope.add('uzytkownicy', uzytkownik);
+        $scope.successfulOperation = true;
+        $scope.uzytkownik = {};
       }
       else {
         console.log('nie udało się zarejestrować');

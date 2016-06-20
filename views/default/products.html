@@ -7,7 +7,7 @@
 <nav class="navbar">
   <div class="btn-group btn-group-sm">
     <button type="button" class="btn btn-default navbar-btn" ng-click="products=false; get('produkty')">Przeglądaj</button>
-    <button type="button" class="btn btn-default navbar-btn" ng-click="products=true; get('producent'); produkt={}">Dodaj</button>
+    <button type="button" class="btn btn-default navbar-btn" ng-click="products=true; get('producent'); produkt={}; successfulOperation=false">Dodaj</button>
   </div>
 </nav>
 
@@ -61,9 +61,6 @@
 </div>
 
 <div ng-show="products">
-OPCJONALNIE - dajemy mozliwosc dodania producenta <br>
-DODANIE PRODUCENTA FORMULARZ<br>
-- nazwa<br>
   <form name="productForm" novalidate>
     <div class="well">
 
@@ -109,7 +106,12 @@ DODANIE PRODUCENTA FORMULARZ<br>
       </div>
     </div>
   </form>
-  <button ng-click='add("produkty", produkt); produkt = {}' ng-show='productForm.$valid'>
+  <button ng-click='add("produkty", produkt); produkt = {}; successfulOperation=true'
+          ng-show='productForm.$valid'
+          class="btn btn-block btn-default btn-lg"
+          style="width: auto">
     Dodaj
   </button>
+  <i class="fa fa-check fa-5x" aria-hidden="true" ng-show="successfulOperation"></i>
+
 </div>
