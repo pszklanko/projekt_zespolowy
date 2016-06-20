@@ -19,63 +19,159 @@
     <link rel="stylesheet"
           type="text/css"
           href="{!=URL('static','js/bower_components/components-font-awesome/css/font-awesome.css')!}">
-
+	 <link href="{!=URL('static','css/freelancer.css')!}" rel="stylesheet">
     <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
   </head>
 
   <body ng-controller="trainerCtrl">
-    <div class="navbar navbar-inverse">
-      <a class="navbar-brand" href="#/main">TRENER PERSONALNY</a>
-    </div>
-    <div class="panel panel-default row">
-      <div class="col-xs-3">
-        <a class="btn btn-block btn-default btn-lg"
-           href="#/main"
-           ng-click="successfulOperation = false;"
-           ng-show="isLogged">
-          <i class="fa fa-home" aria-hidden="true"></i> Strona główna
-        </a>
-        <a class="btn btn-block btn-default btn-lg"
-           href="#/diets"
-           ng-click="successfulOperation = false; get('diety', userId)"
-           ng-show="isLogged">
-          <i class="fa fa-cutlery" aria-hidden="true"></i> Diety
-        </a>
-        <a class="btn btn-block btn-default btn-lg"
-           href="#/trainings"
-           ng-click="successfulOperation = false;"
-           ng-show="isLogged">
-          <i class="fa fa-futbol-o" aria-hidden="true"></i> Treningi
-        </a>
-        <a class="btn btn-block btn-default btn-lg"
-           href="#/products"
-           ng-click="successfulOperation = false; get('producent')"
-           ng-show="isLogged">
-          <i class="fa fa-shopping-basket" aria-hidden="true"></i> Produkty
-        </a>
-        <a class="btn btn-block btn-default btn-lg"
-           href="#/main"
-           ng-click="successfulOperation = false; uzytkownik = {}; isLogged = false"
-           ng-show="isLogged">
-          <i class="fa fa-sign-out" aria-hidden="true"></i> Wyloguj
-        </a>
+   <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top" >
+        <div class="container" >
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll" id="topheader">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#page-top">Trener personalny</a>
+            </div>
 
-        <button ng-show="!isLogged"
-                type="button"
-                class="btn btn-block btn-default btn-lg"
-                ng-click="logowanie=false; get('uzytkownicy'); uzytkownik = {}">
-          <i class="fa fa-sign-in" aria-hidden="true"></i> Logowanie
-        </button>
-        <button ng-show="!isLogged"
-                type="button"
-                class="btn btn-block btn-default btn-lg"
-                ng-click="logowanie=true; uzytkownik = {}">
-          <i class="fa fa-user-plus" aria-hidden="true"></i> Rejestracja
-        </button>
-      </div>
-      <div class="col-xs-8">
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li class="page-scroll">
+                      <a
+                         href="#/main"
+                         ng-click="successfulOperation = false;"
+                         ng-show="isLogged">
+                        <i class="fa fa-home" aria-hidden="true"></i> Strona główna
+                      </a>
+                    </li>
+                    <li class="page-scroll">
+                      <a
+                         href="#/diets"
+                         ng-click="successfulOperation = false; get('diety', userId)"
+                         ng-show="isLogged">
+                        <i class="fa fa-cutlery" aria-hidden="true"></i> Diety
+                      </a>
+                    </li>
+                    <li class="page-scroll">
+                      <a
+                         href="#/trainings"
+                         ng-click="successfulOperation = false;"
+                         ng-show="isLogged">
+                        <i class="fa fa-futbol-o" aria-hidden="true"></i> Treningi
+                      </a>
+                    </li>
+                    <li class="page-scroll">
+                      <a
+                         href="#/products"
+                         ng-click="successfulOperation = false; get('producent')"
+                         ng-show="isLogged">
+                        <i class="fa fa-shopping-basket" aria-hidden="true"></i> Produkty
+                      </a>
+                    </li>
+                    <li class="page-scroll">
+                      <a
+                         href="#/main"
+                         ng-click="successfulOperation = false; uzytkownik = {}; isLogged = false"
+                         ng-show="isLogged">
+                        <i class="fa fa-sign-out" aria-hidden="true"></i> Wyloguj
+                      </a>
+                    </li>
+                    <li class="page-scroll">
+                      <button ng-show="!isLogged"
+                              type="button"
+                              class="btn btn-block btn-default btn-lg"
+                              ng-click="logowanie=false; get('uzytkownicy'); uzytkownik = {}">
+                        <i class="fa fa-sign-in" aria-hidden="true"></i> Logowanie
+                      </button>
+                    </li>
+                    <li class="page-scroll">
+                      <button ng-show="!isLogged"
+                              type="button"
+                              class="btn btn-block btn-default btn-lg"
+                              ng-click="logowanie=true; uzytkownik = {}">
+                        <i class="fa fa-user-plus" aria-hidden="true"></i> Rejestracja
+                      </button>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <img class="img-responsive" src="{!=URL('static','images/head.png')!}" alt="">
+                    <div class="intro-text">
+                        <span class="name">Trener personalny</span>
+                        <hr class="star-light">
+                        <span class="skills">Open - User friendly - Effective </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+      <div class="container-liquid">
         <ng-view />
       </div>
     </div>
+	   <footer class="text-center">
+        <div class="footer-above">
+            <div class="container">
+                <div class="row">
+                    <div class="footer-col col-md-4">
+                        <h3>Projekt Zespołowy</h3>
+                        <p>Piotr Szklanko<br>Marcin Szcześniak<br>Kamil Tartanus<br>Maciej Olichwier</p>
+                    </div>
+                    <div class="footer-col col-md-4">
+                        <h3>Around the Web</h3>
+                        <ul class="list-inline">
+                            <li>
+                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-facebook"></i></a>
+                            </li>
+                            <li>
+                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-google-plus"></i></a>
+                            </li>
+                            <li>
+                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-twitter"></i></a>
+                            </li>
+                            <li>
+                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-linkedin"></i></a>
+                            </li>
+                            <li>
+                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-dribbble"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer-col col-md-4">
+                        <h3>O aplikacji</h3>
+                        <p>Aplikacja Trener Personalny została stworzona na potrzeby przedmiotu Projekt Zespołowy <a href="#topheader">Do góry</a>.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-below">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        Copyright &copy; Projekt Zespołowy 2016
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
   </body>
 </html>
