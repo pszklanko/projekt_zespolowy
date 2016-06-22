@@ -1,5 +1,5 @@
 trainerApp
-  .controller('trainerCtrl', function($scope,$http,$cookieStore) {
+  .controller('trainerCtrl', function($scope,$http,$cookieStore,$anchorScroll,$location) {
     $scope.diety = {};
     $scope.treningi = {};
     $scope.produkty = {};
@@ -15,6 +15,19 @@ trainerApp
     $scope.uzytkownicy = [];
     $scope.trening = {};
     $scope.successfulOperation = false;
+
+    $scope.gotoAnchor = function(x) {
+      var newHash = 'anchor' + x;
+      if ($location.hash() !== newHash) {
+        // set the $location.hash to `newHash` and
+        // $anchorScroll will automatically scroll to it
+        $location.hash('anchor' + x);
+      } else {
+        // call $anchorScroll() explicitly,
+        // since $location.hash hasn't changed
+        $anchorScroll();
+      }
+    };
 
 
     try {
@@ -132,6 +145,7 @@ trainerApp
       }
       else {
         console.log('nie udało się zarejestrować');
+        alert('hasła nie są takie same');
         $scope.uzytkownik = {};
       }
     }

@@ -91,19 +91,23 @@
       <br>
       <div ng-show="trening.czy_trening_wykonany">
       <label>liczba serii</label>
-      <input name="pole" class="form-control" ng-model="trening.ilosc_serii" style="width: auto" required/>
+      <input name="pole"
+             class="form-control"
+             ng-model="trening.ilosc_serii"
+             pattern="[0-9]{1,}"
+             style="width: auto" required/>
       <span class="error" ng-show="!trening.ilosc_serii">
         Uzupełnij pole
       </span>
       <br>
       <label>liczba powtórzeń</label>
-      <input name="pole" class="form-control" ng-model="trening.ilosc_powtorzen" style="width: auto" required/>
+      <input name="pole" class="form-control" ng-model="trening.ilosc_powtorzen" pattern="[0-9]{1,}" style="width: auto" required/>
       <span class="error" ng-show="!trening.ilosc_powtorzen">
         Uzupełnij pole
       </span>
       <br>
-      <label>obciążenie</label>
-      <input name="pole" class="form-control" ng-model="trening.obciazenie" style="width: auto" required/>
+      <label>obciążenie [kg]</label>
+      <input name="pole" class="form-control" ng-model="trening.obciazenie" pattern="[0-9]{1,}" style="width: auto" required/>
       <span class="error" ng-show="!trening.obciazenie">
         Uzupełnij pole
       </span>

@@ -75,31 +75,31 @@
         </span>
         <br>
         <label>nazwa produktu</label>
-        <input name="pole" class="form-control" ng-model="produkt.nazwa" style="width: auto" required />
+        <input name="pole" class="form-control" pattern="[A-Za-z]{1,}" ng-model="produkt.nazwa" style="width: auto" required />
         <span class="error" ng-show="!produkt.nazwa">
           Uzupełnij pole
         </span>
         <br>
         <label>węglowodany [g]</label>
-        <input name="pole" class="form-control" ng-model="produkt.weglowodany" style="width: auto" required />
+        <input name="pole" class="form-control" pattern="[0-9]{1,}" ng-model="produkt.weglowodany" style="width: auto" required />
         <span class="error" ng-show="!produkt.weglowodany">
           Uzupełnij pole
         </span>
         <br>
         <label>białko [g]</label>
-        <input name="pole" class="form-control" ng-model="produkt.bialka" style="width: auto" required />
+        <input name="pole" class="form-control" pattern="[0-9]{1,}" ng-model="produkt.bialka" style="width: auto" required />
         <span class="error" ng-show="!produkt.bialka">
           Uzupełnij pole
         </span>
         <br>
         <label>tłuszcze [g]</label>
-        <input name="pole" class="form-control" ng-model="produkt.tluszcze" style="width: auto" required />
+        <input name="pole" class="form-control" pattern="[0-9]{1,}" ng-model="produkt.tluszcze" style="width: auto" required />
         <span class="error" ng-show="!produkt.tluszcze">
           Uzupełnij pole
         </span>
         <br>
         <label>kalorie [kcal]</label>
-        <input name="pole" class="form-control" ng-model="produkt.ilosc_kalorii" style="width: auto" required />
+        <input name="pole" class="form-control" pattern="[0-9]{1,}" ng-model="produkt.ilosc_kalorii" style="width: auto" required />
         <span class="error" ng-show="!produkt.ilosc_kalorii">
           Uzupełnij pole
         </span>

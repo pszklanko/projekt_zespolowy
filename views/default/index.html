@@ -89,7 +89,7 @@
                       <button ng-show="!isLogged"
                               type="button"
                               class="btn btn-block btn-default btn-lg"
-                              ng-click="logowanie=false; get('uzytkownicy')">
+                              ng-click="logowanie=false; get('uzytkownicy'); gotoAnchor('Log')">
                         <i class="fa fa-sign-in" aria-hidden="true"></i> Logowanie
                       </button>
                     </li>
@@ -97,7 +97,7 @@
                       <button ng-show="!isLogged"
                               type="button"
                               class="btn btn-block btn-default btn-lg"
-                              ng-click="logowanie=true; uzytkownik = {}">
+                              ng-click="logowanie=true; uzytkownik = {}; gotoAnchor('Reg')">
                         <i class="fa fa-user-plus" aria-hidden="true"></i> Rejestracja
                       </button>
                     </li>

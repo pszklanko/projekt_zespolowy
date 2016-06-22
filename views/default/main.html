@@ -4,7 +4,7 @@
   span.error {color: red; font-weight: bold}
 </style>
 
-<div ng-show="logowanie" ng-show="!isLogged">
+<div id="anchorReg" ng-show="logowanie" ng-show="!isLogged">
   <form name="regForm" novalidate>
     <div class="well">
 
@@ -46,7 +46,7 @@
 
 </div>
 
-<div ng-show="!logowanie && !isLogged">
+<div id="anchorLog" ng-show="!logowanie && !isLogged">
   <form name="loggingForm" novalidate>
     <div class="well">
 
