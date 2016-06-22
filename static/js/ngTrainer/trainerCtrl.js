@@ -1,5 +1,5 @@
 trainerApp
-  .controller('trainerCtrl', function($scope,$http) {
+  .controller('trainerCtrl', function($scope,$http,$cookieStore) {
     $scope.diety = {};
     $scope.treningi = {};
     $scope.produkty = {};
@@ -13,11 +13,22 @@ trainerApp
     $scope.trainigTab = 'history';
     $scope.rodzajeDiet = {};
     $scope.uzytkownicy = [];
-    $scope.uzytkownik = {};
     $scope.trening = {};
-    $scope.isLogged = false;
-    $scope.userId = 0;
     $scope.successfulOperation = false;
+
+
+    try {
+      $scope.uzytkownik = $cookieStore.get('login');
+      $scope.isLogged = $cookieStore.get('isLogged');
+      $scope.userId = $cookieStore.get('id');
+      $scope.uzytkownikk = $cookieStore.get('login')
+    }
+    catch(err) {
+        $scope.isLogged = false;
+        $scope.uzytkownik = '';
+        $scope.userId = '';
+        $scope.uzytkownikk = '';
+    }
 
     $scope.sortType     = 'name';
     $scope.sortReverse  = false;
@@ -57,6 +68,16 @@ trainerApp
         })
     };
 
+    if ($scope.isLogged) {
+      $scope.get('diety', '');
+      $scope.get('treningi', '');
+      $scope.get('produkty', '');
+      $scope.get('producent', '');
+      $scope.get('historia_treningow', '');
+      $scope.get('cwiczenia', '');
+      $scope.get('rodzaje_diet', '');
+      $scope.get('uzytkownicy', '');
+    };
     $scope.get('produkty', '');
     $scope.get('uzytkownicy', '');
 
@@ -83,7 +104,17 @@ trainerApp
         if ($scope.uzytkownicy[i].login == uzytkownik['login']) {
           if($scope.uzytkownicy[i].haslo == uzytkownik['haslo']) {
             $scope.isLogged = true;
-            $scope.userId = $scope.uzytkownicy[i].id
+            $scope.uzytkownik = '';
+            $cookieStore.put('isLogged', true);
+            $cookieStore.put('login', uzytkownik['login']);
+            $cookieStore.put('id', $scope.uzytkownicy[i].id);
+
+            $scope.uzytkownik = $cookieStore.get('login')
+
+            $scope.uzytkownikk = $cookieStore.get('login')
+
+            $scope.isLogged = $cookieStore.get('isLogged')
+            $scope.userId = $cookieStore.get('id')
           }
         }
       }
@@ -154,6 +185,7 @@ trainerApp
     };
 
     $scope.addTraining = function (training) {
+      console.log(training);
       delete training.id_dnia;
       day = training.data_dodania.getDate() < 10 ? '0'+training.data_dodania.getDate() : training.data_dodania.getDate();
       month = training.data_dodania.getMonth() < 10 ? '0'+(training.data_dodania.getMonth()+1) : training.data_dodania.getMonth()+1;
@@ -167,6 +199,16 @@ trainerApp
         training['czy_trening_wykonany'] = '0';
       }
       $scope.add('historia_treningow', training);
+    }
+
+    $scope.logout = function () {
+      $scope.uzytkownik = '';
+      $scope.successfulOperation = false;
+      $cookieStore.put('isLogged', false);
+      $cookieStore.remove('login');
+      $cookieStore.remove('id');
+
+      $scope.isLogged = $cookieStore.get('isLogged');
     }
 
   });

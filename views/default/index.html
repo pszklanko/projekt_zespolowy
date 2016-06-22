@@ -5,6 +5,7 @@
 
     <script src="{!=URL('static','js/bower_components/angular/angular.js')!}"></script>
     <script src="{!=URL('static','js/bower_components/angular-route/angular-route.js')!}"></script>
+    <script src="{!=URL('static','js/bower_components/angular-cookies/angular-cookies.js')!}"></script>
 
     <script src="{!=URL('static','js/ngTrainer/personalTrainer.js')!}"></script>
     <script src="{!=URL('static','js/ngTrainer/trainerCtrl.js')!}"></script>
@@ -79,7 +80,7 @@
                     <li class="page-scroll">
                       <a
                          href="#/main"
-                         ng-click="successfulOperation = false; uzytkownik = {}; isLogged = false"
+                         ng-click="logout()"
                          ng-show="isLogged">
                         <i class="fa fa-sign-out" aria-hidden="true"></i> Wyloguj
                       </a>
@@ -88,7 +89,7 @@
                       <button ng-show="!isLogged"
                               type="button"
                               class="btn btn-block btn-default btn-lg"
-                              ng-click="logowanie=false; get('uzytkownicy'); uzytkownik = {}">
+                              ng-click="logowanie=false; get('uzytkownicy')">
                         <i class="fa fa-sign-in" aria-hidden="true"></i> Logowanie
                       </button>
                     </li>
